@@ -63,3 +63,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "slim-rails", "~> 3.7"
+
+gem "simple_form", "~> 5.3"
