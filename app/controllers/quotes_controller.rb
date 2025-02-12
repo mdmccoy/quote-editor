@@ -16,13 +16,13 @@ class QuotesController < ApplicationController
     @quote = Quote.new(quote_params)
 
     if @quote.save
-      # respond_to do |format|
-      #   format.turbo_stream
-      #   format.html { redirect_to quotes_path, notice: "Quote was successfully created." }
-      # end
-      redirect_to quotes_path, notice: "Quote was successfully created."
+      respond_to do |format|
+        format.html { redirect_to quotes_path, notice: "Quote was successfully created." }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -33,7 +33,15 @@ class QuotesController < ApplicationController
     if @quote.update(quote_params)
       redirect_to quotes_path, notice: "Quote was successfully updated."
     else
-      render :edit
+      respond_to do |format|
+        # Example of rendering the turbo_steam response in the format block
+        # You can also use a dedicated view like create.turbo_stream.slim
+        # And you can disable Turbo on the request and force an HTML response w/ data: { turbo: false } on the element
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("edit_quote_#{@quote.id}", partial: "form", locals: { quote: @quote })
+        end
+        format.html { render :edit }
+      end
     end
   end
 
