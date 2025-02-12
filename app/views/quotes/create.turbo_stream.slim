@@ -1,2 +1,8 @@
-= turbo_stream.replace "new_quote"
-  = render partial: "form", locals: { quote: @quote }
+= turbo_stream.update "new_quote"
+
+// All of the following produce the same HTML
+
+/ = turbo_stream.prepend "quotes", partial: "quote", locals: { quote: @quote }
+/ = turdo_stream.prepend "quotes"
+/   = render partial: "quotes", locals: { quote: quote }
+= turbo_stream.prepend "quotes", @quote

@@ -1,8 +1,7 @@
-= turbo_frame_tag "quotes"
-  main.container 
-    = link_to sanitize("&larr; Back to quotes"), quotes_path 
+main.container 
+  = link_to sanitize("&larr; Back to quotes"), quotes_path 
 
-    .header
-      h1 Edit quote
-
+  .header
+    h1 Edit quote
+  = turbo_frame_tag @quote
     = render "form", quote: @quote
