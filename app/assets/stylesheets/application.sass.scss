@@ -1,20 +1,20 @@
 // Entry point for your Sass build
 
 // Mixins
-@import "mixins/media";
+@use "mixins/media";
 
 // Configuration
-@import "config/variables";
-@import "config/reset";
+@use "config/variables";
+@use "config/reset";
 
 // Components
-@import "components/btn";
-@import "components/error_message";
-@import "components/form";
-@import "components/visually_hidden";
-@import "components/quote";
-@import "components/navbar";
+@use "components/btn";
+@use "components/error_message";
+@use "components/form";
+@use "components/visually_hidden";
+@use "components/quote";
+@use "components/navbar";
 
 // Layouts
-@import "layouts/container";
-@import "layouts/header";
+@use "layouts/container";
+@use "layouts/header";
