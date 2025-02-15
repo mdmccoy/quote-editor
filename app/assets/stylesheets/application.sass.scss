@@ -6,6 +6,7 @@
 // Configuration
 @use "config/variables";
 @use "config/reset";
+@use "config/animations";
 
 // Components
 @use "components/btn";
@@ -14,6 +15,7 @@
 @use "components/visually_hidden";
 @use "components/quote";
 @use "components/navbar";
+@use "components/flash";
 
 // Layouts
 @use "layouts/container";

@@ -17,7 +17,7 @@ class QuotesController < ApplicationController
 
     if @quote.save
       respond_to do |format|
-        format.turbo_stream # { render turbo_stream: turbo_stream.prepend("quotes", partial: "quote", locals: { quote: @quote }) }
+        format.turbo_stream { flash.now[:notice] = "Quote was successfully created." }
         format.html { redirect_to quotes_path, notice: "Quote was successfully created." }
       end
     else
@@ -33,17 +33,20 @@ class QuotesController < ApplicationController
   def update
     if @quote.update(quote_params)
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@quote) }
+        format.turbo_stream { flash.now[:notice] = "Quote was successfully updated." }
         format.html { redirect_to quotes_path, notice: "Quote was successfully updated." }
       end
     else
       respond_to do |format|
-        #   # Example of rendering the turbo_steam response in the format block
-        #   # You can also use a dedicated view like create.turbo_stream.slim
-        #   # And you can disable Turbo on the request and force an HTML response w/ data: { turbo: false } on the element
-        #   # format.turbo_stream do
-        #   #   render turbo_stream: turbo_stream.replace("edit_quote_#{@quote.id}", partial: "form", locals: { quote: @quote })
-        #   # end
+        # Example of rendering the turbo_steam response in the format block
+        # You can also use a dedicated view like create.turbo_stream.slim
+        # And you can disable Turbo on the request and force an HTML response w/ data: { turbo: false } on the element
+        # If you want to perform an action on an element outside of the turbo frame that invoked the action,
+        # (your button/link is inside a turbo frame), then use a .turbo_stream.erb view
+
+        # format.turbo_stream do
+        #   render turbo_stream: turbo_stream.replace("edit_quote_#{@quote.id}", partial: "form", locals: { quote: @quote })
+        # end
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -52,7 +55,7 @@ class QuotesController < ApplicationController
   def destroy
     @quote.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@quote) }
+      format.turbo_stream { flash.now[:notice] = "Quote was successfully updated." }
       format.html { redirect_to quotes_path, notice: "Quote was successfully destroyed." }
     end
   end

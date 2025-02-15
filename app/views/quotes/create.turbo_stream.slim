@@ -6,3 +6,5 @@
 / = turdo_stream.prepend "quotes"
 /   = render partial: "quotes", locals: { quote: quote }
 = turbo_stream.prepend "quotes", @quote
+
+= render_turbo_stream_flash_messages
