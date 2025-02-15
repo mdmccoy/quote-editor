@@ -11,4 +11,7 @@ class Quote < ApplicationRecord
   # after_destroy_commit -> { broadcast_remove_to "quotes" }
 
   broadcasts_to ->(quote) { [ quote.company, "quotes" ] }, inserts_by: :prepend
+
+  # after_create_commit -> { broadcast_remove_to([ self.company, "new_quotes" ], target: "new_quote") }
+  # after_destroy_commit -> { broadcast_replace_to([ self.company, "new_quotes" ], partial: "quotes/empty_state", target: "new_quote") }
 end
