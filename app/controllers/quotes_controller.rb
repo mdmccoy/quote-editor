@@ -1,11 +1,12 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: [ :show, :edit, :update, :destroy ]
-  before_action :set_quotes, only: [ :index, :destroy ]
 
   def index
+    @quotes = current_company.quotes.ordered
   end
 
   def show
+    @line_item_dates = @quote.line_item_dates.ordered
   end
 
   def new
@@ -64,10 +65,6 @@ class QuotesController < ApplicationController
 
   def set_quote
     @quote = current_company.quotes.find(params[:id])
-  end
-
-  def set_quotes
-    @quotes = current_company.quotes.ordered
   end
 
   def quote_params

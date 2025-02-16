@@ -1,0 +1,8 @@
+= turbo_stream.update "new_line_item_date"
+
+- if @line_item_date.previous_date 
+  = turbo_stream.after(@line_item_date.previous_date, @line_item_date)
+- else
+  = turbo_stream.prepend("line_item_dates", @line_item_date)
+
+= render_turbo_stream_flash_messages
