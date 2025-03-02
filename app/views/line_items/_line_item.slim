@@ -1,0 +1,28 @@
+.line-item id=dom_id(line_item)
+  .line-item__name 
+    = line_item.name
+
+    .line-item__description 
+      = simple_format line_item.description
+
+  .line-item__quantity-price 
+    = line_item.quantity.to_s + "x" + number_to_currency(line_item.unit_price).to_s
+
+  .line-item__quantity
+    = line_item.quantity
+
+  .line-item__price 
+    = number_to_currency line_item.unit_price 
+
+  .line-item__actions 
+    = button_to "Delete",
+      [ line_item.quote,  line_item.line_item_date, line_item ],
+      mehtod: :delete,
+      class: "btn btn--light"
+
+    = link_to "Edit",
+      [ :edit, line_item.quote,  line_item.line_item_date, line_item ],
+      mehtod: :delete,
+      class: "btn btn--light"
+
+

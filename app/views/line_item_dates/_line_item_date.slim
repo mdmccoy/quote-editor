@@ -7,3 +7,17 @@
       .line-item-date__actions 
         = button_to "Delete", [line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: "Are you sure?" } }
         = link_to "Edit", [:edit, line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light"
+
+    .line-item-date__body 
+      .line-item.line-item--header
+        .line-item__name Article 
+        .line-item__quantity Quantity 
+        .line-item__price Price 
+        .line-item__actions
+
+      = render line_item_date.line_items
+
+      .line-item-date__footer 
+        = link_to "Add item",
+          [:new, line_item_date.quote, line_item_date, :line_item],
+          class: "btn btn--primary"

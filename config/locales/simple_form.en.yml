@@ -8,6 +8,11 @@ en:
         name: Name
       line_item_date:
         date: Date
+      line_item:
+        name: Name
+        quantity: Quantity
+        unit_price: Unit price
+        description: Description
 
   helpers:
     submit:
