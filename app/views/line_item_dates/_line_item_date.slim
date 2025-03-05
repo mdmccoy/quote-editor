@@ -5,8 +5,8 @@
         = l(line_item_date.date, format: :long)
 
       .line-item-date__actions 
-        = button_to "Delete", [line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: "Are you sure?" } }
-        = link_to "Edit", [:edit, line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light"
+        = button_to "Delete Date", [line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: "Are you sure?" } }
+        = link_to "Edit Date", [:edit, line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light"
 
     .line-item-date__body 
       .line-item.line-item--header
