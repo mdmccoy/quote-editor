@@ -4,5 +4,5 @@
   .header 
     h1 Edit date
 
-  = turbo_frame_tag @line_item_date
+  = turbo_frame_tag dom_id(@line_item_date, "edit")
     = render "form", quote: @quote, line_item_date: @line_item_date

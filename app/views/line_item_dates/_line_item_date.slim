@@ -1,12 +1,13 @@
-= turbo_frame_tag line_item_date
+= turbo_frame_tag line_item_date, data: { quotes_target: "lineItemDate" }, date: line_item_date.date
   .line_item_date
-    .line-item-date__header
-      h2.line-item-date__title 
-        = l(line_item_date.date, format: :long)
+    = turbo_frame_tag dom_id(line_item_date, "edit")
+      .line-item-date__header
+        h2.line-item-date__title 
+          = l(line_item_date.date, format: :long)
 
-      .line-item-date__actions 
-        = button_to "Delete Date", [line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: "Are you sure?" } }
-        = link_to "Edit Date", [:edit, line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light"
+        .line-item-date__actions 
+          = button_to "Delete Date", [line_item_date.quote, line_item_date], method: :delete, class: "btn btn--light", form: { data: { turbo_confirm: "Are you sure?" } }
+          = link_to "Edit Date", [:edit, line_item_date.quote, line_item_date], class: "btn btn--light"
 
     .line-item-date__body 
       .line-item.line-item--header
@@ -15,9 +16,13 @@
         .line-item__price Price 
         .line-item__actions
 
-      = render line_item_date.line_items
+      = turbo_frame_tag [dom_id(line_item_date), "line_items"]
+        = render line_item_date.line_items
+
+      = turbo_frame_tag "#{dom_id(line_item_date)}_new_line_item"
 
       .line-item-date__footer 
         = link_to "Add item",
           [:new, line_item_date.quote, line_item_date, :line_item],
-          class: "btn btn--primary"
+          class: "btn btn--primary",
+          data: { turbo_frame: "#{dom_id(line_item_date)}_new_line_item" }

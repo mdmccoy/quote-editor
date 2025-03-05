@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import QuotesController from "./quotes_controller"
+application.register("quotes", QuotesController)
+
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)

@@ -1,0 +1,5 @@
+= turbo_stream.append("#{dom_id(@line_item_date)}_line_items", @line_item)
+
+= turbo_stream.update("#{dom_id(@line_item_date)}_new_line_item", "")
+
+= render_turbo_stream_flash_messages
